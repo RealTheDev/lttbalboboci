@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 let pollOptions1 = ["Cioroiu", "Jorj", "Muia", "da"];
 let pollOptions2 = ["Anabela", "Casiana", "Barbela"];
-let pollDeadline = Date.now() + 50 * 1000;
+let pollDeadline = Date.now() + 300 * 1000;
 // let pollDeadline = Date.now() + 24 * 60 * 60 * 1000;
 
 
