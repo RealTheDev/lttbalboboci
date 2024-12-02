@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const port = 3000;
-let pollOptions1 = ["Cioroiu", "Jorj", "Muia", "da"];
-let pollOptions2 = ["Anabela", "Casiana", "Barbela"];
-let pollDeadline = Date.now() + 300 * 1000;
+let pollOptions1 = ["Baiat 1", "Baiat 2", "Baiat 3", "Baiat 4", "Baiat 5", "Baiat 6", "Baiat 7"];
+let pollOptions2 = ["Fata 1", "Fata 2", "Fata 3", "Fata 4", "Fata 5"];
+let pollDeadline = Date.now() + 100 * 1000;
 // let pollDeadline = Date.now() + 24 * 60 * 60 * 1000;
 
 
