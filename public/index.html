@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Poll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #333;
+        }
+        .poll-options button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .poll-options button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #888888;
+        }
+        .results {
+            display: none;
+            text-align: left;
+        }
+        .results li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Poll</h1>
+        <div id="time-left"></div>
+        <form id="poll-form1" action="/api/vote1" method="POST">
+            <div class="poll-options" id="poll-options1">
+                <!-- Content will be added dynamically -->
+            </div>
+            <button type="submit">Vote</button>
+        </form>
+        <form id="poll-form2" action="/api/vote2" method="POST">
+            <div class="poll-options" id="poll-options2">
+                <!-- Content will be added dynamically -->
+            </div>
+            <button type="submit">Vote</button>
+        </form>
+        <div class="message" id="message"></div>
+        <div class="results">
+            <h2>Results 1:</h2>
+            <ul id="results-list1"></ul>
+            <h2>Results 2:</h2>
+            <ul id="results-list2"></ul>
+        </div>
+    </div>
+    <script>
+        async function fetchResults() {
+            const response1 = await fetch('/api/results1');
+            const results1 = await response1.json();
+            const response2 = await fetch('/api/results2');
+            const results2 = await response2.json();
+            
+            const resultsList1 = document.getElementById('results-list1');
+            const resultsList2 = document.getElementById('results-list2');
+
+            const totalVotes1 = Object.values(results1).reduce((sum, votes) => sum + votes, 0);
+            const sortedResults1 = Object.entries(results1).sort((a, b) => b[1] - a[1]);
+            const totalVotes2 = Object.values(results2).reduce((sum, votes) => sum + votes, 0);
+            const sortedResults2 = Object.entries(results2).sort((a, b) => b[1] - a[1]);
+
+            resultsList1.innerHTML = sortedResults1.map(([option, votes]) => {
+                const percentage = ((votes / totalVotes1) * 100).toFixed(2);
+                return `<li>${option}: ${votes} votes (${percentage}%)</li>`;
+            }).join('');
+            resultsList2.innerHTML = sortedResults2.map(([option, votes]) => {
+                const percentage = ((votes / totalVotes2) * 100).toFixed(2);
+                return `<li>${option}: ${votes} votes (${percentage}%)</li>`;
+            }).join('');
+        }
+
+        async function fetchPollData() {
+            const response = await fetch('/api/poll-data');
+            const pollData = await response.json();
+            const pollOptionsDiv1 = document.getElementById('poll-options1');
+            const pollOptionsDiv2 = document.getElementById('poll-options2');
+
+            pollOptionsDiv1.innerHTML = pollData.options1.map((option, index) => 
+                `<label><input type="radio" name="option" id="${index}" value="${index}" required> ${option}</label><br>`
+            ).join('');
+
+            pollOptionsDiv2.innerHTML = pollData.options2.map((option, index) => 
+                `<label><input type="radio" name="option" id="${index}" value="${index}" required> ${option}</label><br>`
+            ).join('');
+        }
+
+        async function checkDeadline() {
+            const response = await fetch('/api/deadline');
+            const data = await response.json();
+            const now = new Date().getTime();
+            if (now >= data.deadline) {
+                document.getElementById('poll-form1').style.display = 'none';
+                document.getElementById('poll-form2').style.display = 'none';
+                document.querySelector('.results').style.display = 'block';
+                await fetchResults();
+            } else {
+                const timeLeft = data.deadline - now;
+                document.getElementById("time-left").innerText = formatTime(timeLeft);
+                setTimeout(checkDeadline, 1000);
+            }
+        }
+
+        function formatTime(ms) {
+            const hours = Math.floor(ms / (1000 * 60 * 60));
+            const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+            return `${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        document.getElementById('poll-form1').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (!selectedOption) return;
+
+            const vote = selectedOption.value;
+
+            if (localStorage.getItem('hasVoted1')) {
+                document.getElementById('message').innerText = 'You have already voted!';
+                return;
+            }
+            console.log(vote);
+            const response = await fetch('/api/vote1', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ option: vote })
+            });
+            console.log(response);
+            if (response.ok) {
+                localStorage.setItem('hasVoted1', true);
+                document.getElementById('message').innerText = 'Thank you for voting!';
+            } else {
+                document.getElementById('message').innerText = 'Error submitting your vote. Please try again.';
+            }
+        });
+
+        document.getElementById('poll-form2').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (!selectedOption) return;
+
+            const vote = selectedOption.value;
+
+            if (localStorage.getItem('hasVoted2')) {
+                document.getElementById('message').innerText = 'You have already voted!';
+                return;
+            }
+            console.log(vote);
+            const response = await fetch('/api/vote2', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ option: vote })
+            });
+            console.log(response);
+            if (response.ok) {
+                localStorage.setItem('hasVoted2', true);
+                document.getElementById('message').innerText = 'Thank you for voting!';
+            } else {
+                document.getElementById('message').innerText = 'Error submitting your vote. Please try again.';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchPollData();
+            checkDeadline();
+        });
+    </script>
+</body>
+</html>
