@@ -3,66 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Poll</title>
+    <title>Balul Bobocilor</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        .container {
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 600px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            color: #333;
-        }
-        .poll-options button {
-            display: block;
-            margin: 10px auto;
-            padding: 10px 20px;
-            font-size: 18px;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .poll-options button:hover {
-            background-color: #0056b3;
-        }
-        .message {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #888888;
-        }
-        .results {
-            display: none;
-            text-align: left;
-        }
-        .results li {
-            margin: 5px 0;
-        }
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+#poll-form1, #poll-form2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    padding: 10px;
+}
+
+.team {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    border-radius: 8px;
+}
+.team h2 {
+    margin-left:5px;
+    margin-top:10px;
+}
+
+.member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left:10px;
+}
+
+.member img {
+    width: 100px;
+    height: auto;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.lyrics {
+    margin-left: 20px;
+    font-style: italic;
+    color: #555;
+}
+
+.results {
+    display: none;
+    text-align: left;
+}
+
+.poll-container {
+    margin: 10px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ddd;
+}
+
+.poll-container h1, .poll-container h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #222;
+    text-align: center;
+}
+
+.poll-container h2 {
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.poll-container .poll-options {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.poll-container label {
+    display: block;
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555;
+    cursor: pointer;
+}
+
+.poll-container input[type="radio"] {
+    margin-right: 10px;
+}
+
+.poll-container button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.poll-container button:hover {
+    background-color: #0056b3;
+}
+
+.poll-container .message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #888888;
+    text-align: center;
+}
+
+.poll-container .results {
+    margin-top: 25px;
+}
+
+.poll-container .results ul {
+    list-style: none;
+    padding: 0;
+}
+
+.poll-container .results li {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.poll-container .results li span {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.poll-container #time-left {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.poll-card {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.poll-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.poll-card input[type="radio"] {
+    display: none;
+}
+
+.poll-card label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.poll-card label:hover {
+    cursor: pointer;
+}
+
+.poll-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.poll-card.selected {
+    border: 2px solid #007bff;
+    background-color: #eef7ff;
+}
+
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="content" id="teams">
+        <!-- Teams will be dynamically added here -->
+    </div>
+
+    <div class="poll-container">
         <h1>Live Poll</h1>
         <div id="time-left"></div>
         <form id="poll-form1" action="/api/vote1" method="POST">
+            <h1>Vot miss</h1>
             <div class="poll-options" id="poll-options1">
                 <!-- Content will be added dynamically -->
             </div>
             <button type="submit">Vote</button>
         </form>
         <form id="poll-form2" action="/api/vote2" method="POST">
+            <h1>Vot mister</h1>
             <div class="poll-options" id="poll-options2">
                 <!-- Content will be added dynamically -->
             </div>
@@ -70,19 +226,51 @@
         </form>
         <div class="message" id="message"></div>
         <div class="results">
-            <h2>Results 1:</h2>
+            <h2>Rezultate fete:</h2>
             <ul id="results-list1"></ul>
-            <h2>Results 2:</h2>
+            <h2>Rezultate băieți:</h2>
             <ul id="results-list2"></ul>
         </div>
     </div>
+
     <script>
+        // Fetch and display teams
+        fetch('/api/teams')
+            .then(response => response.json())
+            .then(data => {
+                const teamsContainer = document.getElementById('teams');
+                data.teams.forEach((team, index) => {
+                    const teamElement = document.createElement('div');
+                    teamElement.className = 'team';
+                    teamElement.innerHTML = `
+                        <h2>Perechea ${index + 1}</h2>
+                        <div class="member">
+                            <img src="${team.girl.photo}" alt="${team.girl.name}" />
+                            <div>
+                                <strong>${team.girl.name}</strong>
+                                <p class="lyrics">${team.girl.lyrics}</p>
+                            </div>
+                        </div>
+                        <div class="member">
+                            <img src="${team.boy.photo}" alt="${team.boy.name}" />
+                            <div>
+                                <strong>${team.boy.name}</strong>
+                                <p class="lyrics">${team.boy.lyrics}</p>
+                            </div>
+                        </div>
+                    `;
+                    teamsContainer.appendChild(teamElement);
+                });
+            });
+
+        // Poll-related scripts
         async function fetchResults() {
             const response1 = await fetch('/api/results1');
             const results1 = await response1.json();
             const response2 = await fetch('/api/results2');
             const results2 = await response2.json();
-            
+            console.log(results1);
+            console.log(results2);
             const resultsList1 = document.getElementById('results-list1');
             const resultsList2 = document.getElementById('results-list2');
 
@@ -108,12 +296,29 @@
             const pollOptionsDiv2 = document.getElementById('poll-options2');
 
             pollOptionsDiv1.innerHTML = pollData.options1.map((option, index) => 
-                `<label><input type="radio" name="option" id="${index}" value="${index}" required> ${option}</label><br>`
+                `<div class="poll-card pollcard1"><label><input type="radio" name="option1" id="${index}" value="${index}" required> ${option}</label></div><br>`
             ).join('');
 
             pollOptionsDiv2.innerHTML = pollData.options2.map((option, index) => 
-                `<label><input type="radio" name="option" id="${index}" value="${index}" required> ${option}</label><br>`
+                `<div class="poll-card pollcard2"><label><input type="radio" name="option2" id="${index}" value="${index}" required> ${option}</label></div><br>`
             ).join('');
+
+            const pollCards1 = document.querySelectorAll('.pollcard1');
+        pollCards1.forEach(card => {
+            card.addEventListener('click', () => {
+                pollCards1.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                card.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+        const pollCards2 = document.querySelectorAll('.pollcard2');
+        pollCards2.forEach(card => {
+            card.addEventListener('click', () => {
+                pollCards2.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                card.querySelector('input[type="radio"]').checked = true;
+            });
+        });
         }
 
         async function checkDeadline() {
@@ -141,58 +346,57 @@
 
         document.getElementById('poll-form1').addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            const selectedOption = document.querySelector('input[name="option"]:checked');
+            const selectedOption = document.querySelector('input[name="option1"]:checked');
             if (!selectedOption) return;
 
             const vote = selectedOption.value;
-
             if (localStorage.getItem('hasVoted1')) {
-                document.getElementById('message').innerText = 'You have already voted!';
+                document.getElementById('message').innerText = 'Ai votat deja!';
+                document.getElementById('message').style.color = '#ff9999'
                 return;
             }
-            console.log(vote);
             const response = await fetch('/api/vote1', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ option: vote })
             });
-            console.log(response);
             if (response.ok) {
-                localStorage.setItem('hasVoted1', true);
-                document.getElementById('message').innerText = 'Thank you for voting!';
+                // localStorage.setItem('hasVoted1', true);
+                document.getElementById('message').innerText = 'Mulțumim pentru vot!';
+                document.getElementById('message').style.color = '#77dd77'
             } else {
                 document.getElementById('message').innerText = 'Error submitting your vote. Please try again.';
+                document.getElementById('message').style.color = '#ff9999'
             }
         });
 
         document.getElementById('poll-form2').addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            const selectedOption = document.querySelector('input[name="option"]:checked');
+            const selectedOption = document.querySelector('input[name="option2"]:checked');
             if (!selectedOption) return;
 
             const vote = selectedOption.value;
-
             if (localStorage.getItem('hasVoted2')) {
-                document.getElementById('message').innerText = 'You have already voted!';
+                document.getElementById('message').innerText = 'Ai votat deja!';
+                document.getElementById('message').style.color = '#ff9999'
                 return;
             }
-            console.log(vote);
             const response = await fetch('/api/vote2', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ option: vote })
             });
-            console.log(response);
             if (response.ok) {
-                localStorage.setItem('hasVoted2', true);
-                document.getElementById('message').innerText = 'Thank you for voting!';
+                // localStorage.setItem('hasVoted2', true);
+                document.getElementById('message').innerText = 'Mulțumim pentru vot!';
+                document.getElementById('message').style.color = '#77dd77'
             } else {
                 document.getElementById('message').innerText = 'Error submitting your vote. Please try again.';
+                document.getElementById('message').style.color = '#ff9999'
             }
         });
 
+        
         document.addEventListener('DOMContentLoaded', () => {
             fetchPollData();
             checkDeadline();
