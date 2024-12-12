@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const port = 3000;
-let pollDeadline = Date.now() + 100 * 1000;
+let pollDeadline = 1734624005 * 1000;
 let pollOptions1 = ["Galiger Hanna", "Szilagyi Paula", "Lacatus Andrada", "Grebinar Roxana", "Gantner Alisia", "Horvath Lorena", "Peter Iris", "Snelenpeger Sofia", "Nagy Vivien", "Rus Roxana", "Kiss Reka", "Ardelean Iasmina", "Dosa Paula"];
 let pollOptions2 = ["Bartha Lucian", "Papai Otto", "Suto Alex", "Alfoldi Raul", "Dragos Gabriel", "Giurguta Dorian", "Osan Andrei", "Kaszany Gabriel", "Kristian Hiri", "Dominik Asztalos", "Balog Matei"];
 const teams = [

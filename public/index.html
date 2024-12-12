@@ -361,7 +361,7 @@
                 body: JSON.stringify({ option: vote })
             });
             if (response.ok) {
-                // localStorage.setItem('hasVoted1', true);
+                localStorage.setItem('hasVoted1', true);
                 document.getElementById('message').innerText = 'Mulțumim pentru vot!';
                 document.getElementById('message').style.color = '#77dd77'
             } else {
@@ -387,7 +387,7 @@
                 body: JSON.stringify({ option: vote })
             });
             if (response.ok) {
-                // localStorage.setItem('hasVoted2', true);
+                localStorage.setItem('hasVoted2', true);
                 document.getElementById('message').innerText = 'Mulțumim pentru vot!';
                 document.getElementById('message').style.color = '#77dd77'
             } else {
