@@ -42,6 +42,10 @@ const teams = [
         boy: { name: "Osan Andrei", photo: "/images/baiat8.jpg", lyrics: "Eu Andrei ma numesc,<br>Am venit s-o insotesc,<br>Pe Sofia azi la bal,<br>Sa castigam ar fi ideal,<br>De zodie sunt capricorn,<br>Ma-nclin gallant ca si un domn,<br>Cu ochi caprui si chip senin,<br>Si eleganta din plin,<br>Va rugam sa ne votati,<br>Ca nu o sa regretati!" },
     },
     {
+        girl: { name: "Ardelean Iasmina", photo: "/images/fata12.jpg", lyrics: "Eu Iasmina ma numesc,<br>Si senin mereu zambesc,<br>16 ani o sa implinesc,<br>Si dorintele le indeplinesc.<br>Cu vise si sperante mari,<br>Noi vom fi cei mai tari!<br>Azi coroana o luam,<br>Fara ea noi nu plecam!" },
+        boy: { name: "Balog Matei", photo: "/images/baiat12.jpg", lyrics: "În satul mic, cu dealuri verzi, senine,<br>Trăiește-un băiat cu ochi căprui, divine.<br>Balog Matei e numele ce-l poartă,<br>Un suflet cald, o inimă curată.<br>Privirea lui e blândă, ca un apus,<br>Ce-ți spune povești din ceruri de nespus.<br>Sub gene dese, ochii lui luceau,<br>Ca două stele ce în noapte vegheau.<br>Pe drum de țară, desculț alerga,<br>Cu vise-n suflet și vântul pe fața sa.<br>Cânta cu păsări, râdea cu pârâu,<br>Era un copil de lumină și plai viu." },
+    },
+    {
         girl: { name: "Nagy Vivien", photo: "/images/fata9.jpg", lyrics: "Buna seara,dragi jurati,<br>Spectatori si invitati,<br>Nagy Vivien ma numesc,<br>Gesturi mici eu pretuiesc.<br>Sa va spun cate ceva,<br>Ce stiu ca v-ar interesa.<br>16 ani dar mititica,<br>Sunt pasionata de estetica.<br>Parul blond si ochi maronii,<br>Bag in boala toti strainii.<br>Gatesc bine,nu glumesc,<br>Sa castig,asta imi doresc!<br>Moda,makeup se unesc,<br>Si dau tot ce eu iubesc,<br>Trec peste orice provocare,<br>S-am sa iau coroana la plecare!" },
         boy: { name: "Kaszany Gabriel", photo: "/images/baiat9.jpg", lyrics: "Buna seara tuturor!<br>Nu am venit sa ma insor,<br>Am venit sa castig acest bal,<br>Mister sa fiu la final!<br>Eu Gabriel ma numesc,<br>Azi am sa va uimesc,<br>Cu talentul meu la dans,<br>Si partenera mea de vals." },
     },
@@ -52,10 +56,6 @@ const teams = [
     {
         girl: { name: "Kiss Reka", photo: "/images/fata11.jpg", lyrics: "Buna seara tuturor,<br>Dragi parinti si spectatoti,<br>Vin din Santau cel mic,<br>Nu ma tem de nimic.<br>Reka ma numesc,mereu zambesc!<br>Cu pasiune si curaj,<br>Eu urmez drumul minunat.<br>O boboaca ce promite,plina de bucurie.<br>Eu va arat azi,ca seara aceasta voi castiga." },
         boy: { name: "Dominik Asztalos", photo: "/images/baiat11.jpg", lyrics: "Buna seara va doresc,<br>Dominik ma numesc,<br>Sunt inalt si curajos,<br>16 ani si misterios.<br>Fete am,nu glumesc,<br>Sa castig balul imi doresc,<br>Ochi albastrii si istet,<br>Si de fel sunt vorbaret." },
-    },
-    {
-        girl: { name: "Ardelean Iasmina", photo: "/images/fata12.jpg", lyrics: "Eu Iasmina ma numesc,<br>Si senin mereu zambesc,<br>16 ani o sa implinesc,<br>Si dorintele le indeplinesc.<br>Cu vise si sperante mari,<br>Noi vom fi cei mai tari!<br>Azi coroana o luam,<br>Fara ea noi nu plecam!" },
-        boy: { name: "Balog Matei", photo: "/images/baiat12.jpg", lyrics: "În satul mic, cu dealuri verzi, senine,<br>Trăiește-un băiat cu ochi căprui, divine.<br>Balog Matei e numele ce-l poartă,<br>Un suflet cald, o inimă curată.<br>Privirea lui e blândă, ca un apus,<br>Ce-ți spune povești din ceruri de nespus.<br>Sub gene dese, ochii lui luceau,<br>Ca două stele ce în noapte vegheau.<br>Pe drum de țară, desculț alerga,<br>Cu vise-n suflet și vântul pe fața sa.<br>Cânta cu păsări, râdea cu pârâu,<br>Era un copil de lumină și plai viu." },
     },
     {
         girl: { name: "Dosa Paula", photo: "/images/fata13.jpg", lyrics: "Eu Paula ma numesc,<br>Am 15 ani si va uimesc,<br>Sunt curajoasa si indrasneata,<br>Si-mi traiesc fiecare clipa din viata.<br>Inalta cu ochi caprui,<br>Eu fur inima oricui,<br>Sunt satena si frumoasa,<br>Pentru ca eu sunt balanta.<br>Sa castig e visul meu,<br>Fara sa fac vreun cliseu." },
